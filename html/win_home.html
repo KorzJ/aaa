@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../css/login.css" />
+
+    <style>
+        header{ background-color: #FCFCFC; line-height: 42px; height: 42px; position: relative; }
+        header b{ width: 42px; height: 60%; display: inline-block; position: relative; z-index: 1; background: url() no-repeat center; background-size: 50% auto;  }
+        header b.ic-back{ background-image: url(../image/ic-book.png); float: left;}
+        header b.ic-check{ background-image: url(../image/ic-personCenter.png); float: right; }
+        header .title{ position: absolute; left: 0; bottom: 0; right: 0;  text-align: center; font-size: 18px;  }
+    </style>
+</head>
+<body>
+    <div id="wrap" >
+        <header class="navbar-top" >
+            <b tapmode="hover" onclick="api.closeWin();" class="ic-back"></b>
+            <div class="title">首页</div>
+            <b tapmode="hover" onclick="funActionSheet();"  class="ic-check"></b>
+        </header>
+
+    </div>
+</body>
+</html>
+<script type="text/javascript" src="../script/api.js"></script>
+
+<script type="text/javascript">
+    apiready = function(){
+        $api.fixStatusBar( $api.dom('header') );
+        // $api.dom('.title').innerHTML = api.pageParam.name;
+        api.openFrame({
+            name: 'frm_mine',
+            url: './frm_mine.html',
+            rect: {
+                x: 0,
+                y: $api.dom('header').offsetHeight,
+                w: api.winWidth,
+                h: $api.dom('#main').offsetHeight
+            },
+            bounces : true,
+            pageParam: {
+                name: api.pageParam.name
+           }
+        });
+    };
+
+    function funActionSheet(){
+        api.actionSheet({
+            title: '',
+            cancelTitle: '取消',
+            destructiveTitle: '',
+            buttons: ['图片','拍照']
+        },function(ret,err){
+          if (ret.buttonIndex == 1) {
+            api.getPicture({
+                sourceType: 'camera',
+                encodingType: 'jpg',
+                mediaValue: 'pic',
+                destinationType: 'url',
+                allowEdit: true,
+                quality: 50,
+                targetWidth: 100,
+                targetHeight: 100,
+                saveToPhotoAlbum: false
+            }, function(ret, err) {
+                if (ret) {
+                    var imagepicker = $api.byId('imagePicker');
+                    alert(imagepicker);
+                    imagepicker.src=ret.data;
+                } else {
+                    alert(JSON.stringify(err));
+                }
+            });
+          }
+        });
+    }
+</script>

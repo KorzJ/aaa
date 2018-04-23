@@ -1,0 +1,54 @@
+header{
+  background-color: #469ee3;
+  line-height: 42px;
+  height: 42px;
+  position: relative;
+}
+header .title{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  text-align: center;
+  font-size: 18px;
+  color: white
+}
+
+html body{
+  background-color: #469ee3;
+}
+
+.login_box {
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+input[type="text"]{
+  box-sizing: border-box;
+  width: 100%;
+  height: 43px;
+  line-height: 16px;
+  font-size: 14px;
+  color: #999;
+  padding-left: 10px;
+  border-radius: 10px;
+  background-color: white;
+  margin: 5px 0px;
+}
+
+.login {
+  width: 100%;
+  height: 44px;
+  line-height: 44px;
+  text-align: center;
+  font-size: 13px;
+  color: #469ee3;
+  background-color: white;
+  margin: 40px 0 10px;
+  border-radius: 10px
+}
+
+.login_pic{
+  text-align: center;
+  padding-top: 80px;
+}
